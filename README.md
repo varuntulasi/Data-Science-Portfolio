@@ -10,7 +10,7 @@ Sentiment analysis of Facebook, Microsoft, Apple and Amazon by collecting Englis
 
 ### [Data Cleaning Airbnb Listing](https://github.com/varuntulasi/Data-Cleaning-Airbnb-listing/tree/master)
 
-Clean Airbnb Listing Data (from csv file) using Python
+Cleaning Airbnb Listing Data (from csv file) using Python
 
 
 
