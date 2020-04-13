@@ -20,6 +20,10 @@ Building a system for twitter so that the hate and racism speech can be detected
 
 <em>**Unbounce: Closing the feedback loop: identifying customer pain points through NLP**</em>
 
+### Bachelors Degree Economics Honors Project
+
+[<em>**Is Market Liquidity Reducing? A Preliminary Case Study of US Treasuries (Advisor: Prof Gabriel Mihalache)**</em>](https://github.com/varuntulasi/Economics-project/blob/master/Honors%20Thesis%20Varun%20Tulasi.pdf)
+
 
 
 
