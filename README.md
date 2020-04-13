@@ -12,6 +12,10 @@ Sentiment analysis of Facebook, Microsoft, Apple and Amazon by collecting Englis
 
 Cleaning Airbnb Listing Data (from csv file) using Python
 
+### Current Project: COVID-19 Racism & Hate Speech
+
+Building a system for twitter so that the hate and racism speech can be detected by using data preprocessing, data visualization, sentiment analysis, neural networks, deep learning, CNN, etc.
+
 
 
 
