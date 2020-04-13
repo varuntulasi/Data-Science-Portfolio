@@ -8,6 +8,12 @@ Portfolio of data science projects completed by me for academic, self-learning, 
 
 Sentiment analysis of Facebook, Microsoft, Apple and Amazon by collecting English and French language tweets and Chinese Weibo social media posts relating the #Apple, #Amazon, #Facebook and #Microsoft.
 
-### [Data Cleaning Airbnb Listing]
+### [Data Cleaning Airbnb Listing](https://github.com/varuntulasi/Data-Cleaning-Airbnb-listing/tree/master)
+
+Clean Airbnb Listing Data (from csv file) using Python
+
+
+
+
 
 
