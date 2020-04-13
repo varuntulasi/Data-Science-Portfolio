@@ -20,7 +20,7 @@ Portfolio of data science projects completed by me for academic, self-learning, 
 
 * <em>**Unbounce: Closing the feedback loop: identifying customer pain points through NLP**</em>
 
-### Bachelors Degree Economics Honors Project
+### Bachelor's Degree Economics Honors Project
 
 * [<em>**Is Market Liquidity Reducing? A Preliminary Case Study of US Treasuries (Advisor: Prof Gabriel Mihalache)**</em>](https://github.com/varuntulasi/Economics-project/blob/master/Honors%20Thesis%20Varun%20Tulasi.pdf)
 
