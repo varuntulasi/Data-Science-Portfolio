@@ -16,6 +16,12 @@ Cleaning Airbnb Listing Data (from csv file) using Python
 
 Building a system for twitter so that the hate and racism speech can be detected by using data preprocessing, data visualization, sentiment analysis, neural networks, deep learning, CNN, etc.
 
+### Upcomming capstone project in May 2020: 
+
+<em>**Unbounce: Closing the feedback loop: identifying customer pain points through NLP**</em>
+
+
+
 
 
 
