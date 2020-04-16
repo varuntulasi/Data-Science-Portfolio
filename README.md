@@ -23,6 +23,8 @@ Portfolio of data science projects completed by me for academic, self-learning, 
 ### Bachelor's Degree Economics Honors Project
 
 * [<em>**Is Market Liquidity Reducing? A Preliminary Case Study of US Treasuries (Advisor: Prof Gabriel Mihalache)**</em>](https://github.com/varuntulasi/Economics-project/blob/master/Honors%20Thesis%20Varun%20Tulasi.pdf)
+ 
+ * Used Data visualization and Regression in R to evaluate the impact of new regulations post 2008 financial crisis on US bond market
 
 
 
