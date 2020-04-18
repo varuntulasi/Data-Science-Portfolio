@@ -2,6 +2,8 @@
 
 Portfolio of data science projects completed by me for academic, self-learning, and hobby purposes.
 
+## Resume[https://github.com/varuntulasi/resume/blob/master/Resume%20Varun%20Tulasi.pdf]
+
 ## Projects
 
 ### [A Sentiment Analysis of Big Tech](https://github.com/varuntulasi/A-Sentiment-Analysis-of-Big-Tech)
