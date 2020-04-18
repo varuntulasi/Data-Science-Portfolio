@@ -2,7 +2,7 @@
 
 Portfolio of data science projects completed by me for academic, self-learning, and hobby purposes.
 
-## Resume[https://github.com/varuntulasi/resume/blob/master/Resume%20Varun%20Tulasi.pdf]
+## [Resume](https://github.com/varuntulasi/resume/blob/master/Resume%20Varun%20Tulasi.pdf)
 
 ## Projects
 
