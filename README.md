@@ -8,7 +8,7 @@ Portfolio of data science projects completed by me for academic, self-learning, 
 
 ### [A Sentiment Analysis of Big Tech](https://github.com/varuntulasi/A-Sentiment-Analysis-of-Big-Tech)
 
-* Sentiment analysis of Facebook, Microsoft, Apple and Amazon by collecting English and French language tweets and Chinese Weibo social media posts relating the #Apple, #Amazon, #Facebook and #Microsoft. Used tweepy, BeautifulSoup, Pandas, Altair, HTML, CSS and Javascript.
+* Group project on Sentiment analysis of Facebook, Microsoft, Apple and Amazon by collecting English and French language tweets and Chinese Weibo social media posts relating the #Apple, #Amazon, #Facebook and #Microsoft. Used tweepy, BeautifulSoup, Pandas, Altair, HTML, CSS and Javascript.
 
 ### [Data Cleaning Airbnb Listing](https://github.com/varuntulasi/Data-Cleaning-Airbnb-listing/tree/master)
 
