@@ -24,7 +24,6 @@ To improve the performance and usefulness of clusters we tried a couple of thing
 
 Evaluation of the models in this project turned out to be particularly challenging. The lack of labels on an unsupervised learning model's training data made evaluation problematic because there was nothing to which the model's results could be meaningfully compared. During the first few weeks of this project, we did a literature review to understand how evaluated unsupervised models. There were our findings:
 
-
 #### K-means
 
 To decide the right number of clusters or K we can plot a graph known as the **elbow curve** wherein the x-axis represents the number of clusters and the y-axis represents an evaluation metric such as inertia. It is based on the sum of squared distance (SSE) between data points and their clusters' centroids. The spot where SSE starts to flatten out and forms an elbow is the K we pick. Another option would be to perform **silhouette analysis** `sklearn.metrics.silhouette_score` wherin the degree of separation between clusters is determined. In this metric, we first compute the average distance from all data points in the same cluster and then in the closest cluster and compute the coefficient. The coefficient takes the values between -1 and 1 and a coefficient closer to 1 indicates a good cluster.
@@ -37,7 +36,62 @@ DBSCAN (Density-Based Spatial Clustering of Applications with Noise) is a popula
 
 The Gaussian mixture models can be used the same way as k-means to cluster unlabeled data. However there are two differences. The first being that Kmeans does not account for variance and secondly unlike kmeans, gaussian mixed models give probabilities that a given data point belongs to each of the possible clusters instead of just telling us which data point belongs to which cluster. To evalute the quality of clustering, this [paper](https://ieeexplore.ieee.org/abstract/document/8605459) uses silhouette index. The Jensen-Shannon (JS) metric can also be used to evalute the performance by randomly splitting the original dataset into two datasets and checking how similar the two GMMs trained datasets are for each configuration. The code to calculate the Jensen-Shannon metric can be found [here](https://stackoverflow.com/questions/26079881/kl-divergence-of-two-gmms). And finally, this [paper](https://www.isca-speech.org/archive/archive_papers/icslp_2000/i00_3714.pdf) uses Bayesian information criterion (BIC) in `sklearn.mixture.GaussianMixture` to evaluate the accuracy of the clustering.
 
-
 ### Topic Modeling Evaluation - LDA
 
 Evaluating probabilistic topic models such as LDA is challenging due to its unsupervised training process and as there is no gold standard list of topics to compare against our corpus. Topic coherence measure is a good way to, based on their human-interpretability, compare different topic models. In it a score is given for single topic by measuring the degree of semantic similarity between high scoring words in the topic and it helps to distinguish topics that are artifacts of statistical inference and topics that are semantically interpretable. The two measures of Topic coherence are Intrinsic and Extrinsic. In the [paper](https://www.aclweb.org/anthology/D12-1087.pdf), UMass is used as the representation for intrinsic measure. It requires an ordered words set in which a word is only compared to preceding and succeeding words respectively. It uses as pairwise score function which is the empirical log-probability with smoothing. For extrinsic measure, UCI is used which pairs every single word with every other word. It uses the pointwise mutual information (PMI).
+
+The above findings although helped us improve our understanding out model evaluations, did not prove very helpful in evaluating the performance and compare the performance of clustering and topic modeling. For example, if we examined the scores from the kmeans models:
+
+**Kmeans using pretrained embeddings with 9 clusters and 20 dimenstions**
+
+|  model | silhouette_score  | calinski_harabasz_score  | davies_bouldin_score  |
+|---|---|---|---|
+| pretrained word2vec  |  0.08108 | 404.64413  | 1.96758  |
+| Glove  | 0.05477  | 344.03101  | 2.24773 |
+| FastText  | 0.09273  | 486.45628  | 2.19066  |
+
+The scores did not provide a lot of useful information of the quality of the clusters. Sure, the silhouette_score of FastText was better than the others but the difference was so less that relying mainly on the scores would have been wrong and incorrect. So we decided to get some assistance of Meghan Merrick, Customer Feedback Strategist at Unbounce. 
+
+
+### References
+[Exploring Topic Coherence over many models and many topics](https://www.aclweb.org/anthology/D12-1087.pdf)
+
+[Exploring the Space of Topic Coherence Measures](http://svn.aksw.org/papers/2015/WSDM_Topic_Evaluation/public.pdf)
+
+[An Analysis of the Application of Simplified Silhouette to the Evaluation of k-means Clustering Validity](https://arrow.tudublin.ie/cgi/viewcontent.cgi?article=1214&context=scschcomcon)
+
+[Integration K-Means Clustering Method and Elbow Method For Identification of The Best Customer Profile Cluster](https://iopscience.iop.org/article/10.1088/1757-899X/336/1/012017/pdf)
+
+[Cluster Validity Measurement Techniques 
+](https://s3.amazonaws.com/academia.edu.documents/4196111/KF_Cluster_Validity_Madrid.pdf?response-content-disposition=inline%3B%20filename%3DCluster_validity_measurement_techniques.pdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIATUSBJ6BADH7BYHV5%2F20200521%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20200521T112158Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjENP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQDorKMuye1%2BkjbwvPEVBfrp%2FHJMO3G%2B1ClnEqN4fOcD4AIgfz79G8Xs%2FacCM%2Bx2m7qap5rT7ASNSfn3sPG2KF4mTaMqtAMILBAAGgwyNTAzMTg4MTEyMDAiDDhlXsJ57shYsNaF4yqRAxc6K1y%2B1k270dcM9JkpyhZP%2BLTyvnMhVzecAkrgBYl49GzA9jX%2BuNmZPpdVInWuWF%2FQMi6kLjzlEmw2Gj%2BLn2DcX7b9iVAh75Zq6cC2M2U5yapAZdkZ7Ur%2F4BcPMN6f%2FyqA8%2F8h15bYbMBvH3AxEiqWieAoblswxDAGVcDfjAOmStgg%2FDhQ2xdvZr2GTbhovFaMSj0QRQrE2Rygv05epCNyJu8rmNVuecbDLvUX6V6hvlXir4tyGaTt0k7nN4crrUJBOEHZz8RXFVqu6SfCX07XQUnMmSSY%2BrVlhPKAqCuopXdlidH1%2FEXPm%2F5aUUqHpiEpGUVy37cSN19km2Ab%2F5SWDtBd%2Ft7A3ImiyyMLP%2BbWo%2FaC6nhXbGPuBDqDUCp%2BFJu2jmPmG45%2BiD%2BU%2FAS5dNDs%2Fsa%2FpPxtkYfCqQNXteh5HXwrEiuq6CwQ9lsDIg8bnP5Yt%2FMFBjDHVNkveCdHmhLuyufZIXs6IpFfAeejBwuOl1a100ve3CUO8TCcxDf7jU93UvvddeQdlKsPljmG82FwMJu0mfYFOusBMYrvPHtS5UWAswl%2Bk1hOEVq66UOMq8xX1LcQEKJX4egf1ol49x3YV%2Bm59RqdEpfro6R0eX8lNVBetptvVnyNxnQO6kEMEaeJTr2TzJBuALTorGgdv2wH%2Bt4xpvynQgeql8rj3XlnpkQHA1FNe5SZFVVhWD7qaiLgrUe6Z1Vfn31xPihay0aQoh2YOzoIjIV5kBxndAp8zL83kBMlKxAbYyFfuoDIocKP5J1DLTd9hPIoSAHpFtlQ4fF52pv1smCs3pQalahU1tKY3PBqpwcNvpSTHDFGCU1VW4TkdSRhysLQPiFLvEVN5SeRFQ%3D%3D&X-Amz-Signature=b6f2585991a3d541bf0d2557ccb3594c581f73b5ac58c62ac4f607e70db19e6e)
+
+[Unsupervised learning for human activity recognition using smartphone sensors](https://www.sciencedirect.com/science/article/abs/pii/S0957417414002607)
+
+[Spike Sorting: Bayesian Clustering of
+Non-Stationary Data](http://papers.nips.cc/paper/2559-spike-sorting-bayesian-clustering-of-non-stationary-data.pdf)
+
+[Blob Detection in Static Camera with Gaussian Mixture and Silhouette Index for Human Counting Application](https://ieeexplore.ieee.org/abstract/document/8605459)
+
+[UNSUPERVISED AUDIO STREAM SEGMENTATION AND CLUSTERING
+VIA THE BAYESIAN INFORMATION CRITERION](https://www.isca-speech.org/archive/archive_papers/icslp_2000/i00_3714.pdf)
+
+[Performance Evaluation of Partition and Hierarchical
+Clustering Algorithms for Protein Sequences](https://pdfs.semanticscholar.org/47c7/7cc94e033845cc6d08fc8576a3a1910da27f.pdf)
+
+[A Comparative Study of Divisive and Agglomerative
+Hierarchical Clustering Algorithms](https://hal.archives-ouvertes.fr/hal-02085844/document)
+
+[Evaluation of hierarchical clustering algorithms for document datasets](https://dl.acm.org/doi/abs/10.1145/584792.584877)
+
+[Understanding of Internal Clustering Validation Measures](https://drive.google.com/viewerng/viewer?url=http://datamining.rutgers.edu/publication/internalmeasures.pdf)
+
+
+
+
+
+
+
+
+
+
+
